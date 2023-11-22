@@ -1,0 +1,110 @@
+Python Collections (Arrays)
+There are four collection data types in the Python programming language:
+
+List is a collection which is ordered and changeable. Allows duplicate members.
+Tuple is a collection which is ordered and unchangeable. Allows duplicate members.
+Set is a collection which is unordered, unchangeable*, and unindexed. No duplicate members.
+Dictionary is a collection which is ordered** and changeable. No duplicate members.
+
+
+
+###### List ######
+
+Lists are used to store multiple items in a single variable.
+Lists are created using square brackets:
+
+List Items:
+List items are ordered, changeable, and allow duplicate values.
+List items are indexed, the first item has index [0], the second item has index [1] etc.
+
+Ordered:
+When we say that lists are ordered, it means that the items have a defined order, and that order will not change.
+If you add new items to a list, the new items will be placed at the end of the list.
+
+Note: There are some list methods that will change the order, but in general: the order of the items will not change.
+
+Changeable:
+The list is changeable, meaning that we can change, add, and remove items in a list after it has been created.
+
+Allow Duplicates:
+Since lists are indexed, lists can have items with the same value:
+
+
+
+
+
+###### Tuple ######
+
+Tuple items are ordered, unchangeable, and allow duplicate values.
+Tuple items are indexed, the first item has index [0], the second item has index [1] etc.
+
+Ordered:
+When we say that tuples are ordered, it means that the items have a defined order, and that order will not change.
+
+Unchangeable:
+Tuples are unchangeable, meaning that we cannot change, add or remove items after the tuple has been created.
+
+Allow Duplicates:
+Since tuples are indexed, they can have items with the same value:
+
+Change Tuple Values:
+Once a tuple is created, you cannot change its values. Tuples are unchangeable, or immutable as it also is called.
+But there is a workaround. You can convert the tuple into a list, change the list, and convert the list back into a tuple.
+
+Using Asterisk* :
+If the number of variables is less than the number of values, you can add an * to the variable name and the 
+values will be assigned to the variable as a list:
+
+
+
+
+###### Set ######
+
+Sets are used to store multiple items in a single variable.
+Set is one of 4 built-in data types in Python used to store collections of data, the other 3 are List, Tuple, 
+and Dictionary, all with different qualities and usage.
+A set is a collection which is unordered, unchangeable*, and unindexed.
+
+Set Items:
+Set items are unordered, unchangeable, and do not allow duplicate values.
+
+Unordered:
+Unordered means that the items in a set do not have a defined order.
+Set items can appear in a different order every time you use them, and cannot be referred to by index or key.
+
+Unchangeable:
+Set items are unchangeable, meaning that we cannot change the items after the set has been created.
+
+Duplicates Not Allowed:
+Sets cannot have two items with the same value.
+
+Note: The values True and 1 are considered the same value in sets, and are treated as duplicates:
+Note: The values False and 0 are considered the same value in sets, and are treated as duplicates:
+
+
+
+
+
+###### Dictionary ######
+
+Dictionaries are used to store data values in key:value pairs.
+A dictionary is a collection which is ordered*, changeable and do not allow duplicates.
+
+
+Class:
+A class is a blueprint or template for creating objects.
+
+Objects:
+An object is an instance of a class. It represents a real-world entity and has 
+attributes (data) and behaviors (methods).
+
+Attributes:
+Attributes are variables that store data within a class or an instance. They represent the 
+characteristics or properties of an object.
+
+Methods:
+Methods are functions defined within a class. They represent the actions or behaviors that an object can perform.
+
+Inheritance:
+Inheritance is a mechanism that allows a class (subclass/child class) to inherit the attributes 
+and methods of another class (base class/parent class).
