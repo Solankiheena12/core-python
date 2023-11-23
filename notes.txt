@@ -92,7 +92,9 @@ A dictionary is a collection which is ordered*, changeable and do not allow dupl
 
 
 Class:
-A class is a blueprint or template for creating objects.
+A class is a blueprint for creating objects.
+class is a logical intity
+class can be defined as collection of object
 
 Objects:
 An object is an instance of a class. It represents a real-world entity and has 
