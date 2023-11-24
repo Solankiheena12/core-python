@@ -47,3 +47,49 @@ class Test:
     
 t1 = Person("maths", 86)
 print(t1)
+
+
+
+
+
+# object methods:
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def my_func(self):
+        print("my name is " + self.name)
+
+p1 = Person("heena", 20)
+p1.my_func()
+
+
+
+class Demo:
+    def __init__(self, name, city):
+        self.name = name
+        self.city = city
+
+    def my_func(self):
+        print("my name is " + self.name + " and my city is " + self.city)
+
+d1 = Demo("vihaa", "rajkot")
+d1.my_func()
+
+
+
+# modify object property:
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def my_func(self):
+        print("my age is " + self.age)
+
+p1 = Person("darshan", 15)
+p1.age = 14
+print(p1.age)
