@@ -110,3 +110,4 @@ Methods are functions defined within a class. They represent the actions or beha
 Inheritance:
 Inheritance is a mechanism that allows a class (subclass/child class) to inherit the attributes 
 and methods of another class (base class/parent class).
+

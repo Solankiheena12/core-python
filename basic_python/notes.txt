@@ -57,6 +57,6 @@ This type of conversion is often performed by the language to ensure that operat
 
 
 Intro:::
-hello i m heena solanki a python developer with 2 years of hands-on expirence. my experties are django framework,
+hello i m heena a python developer with 2 years of hands-on expirence. my experties are django framework,
 restfull api development, git hub, database management like postgress, mysql. and i have completed many project
 like services base project, product base project, smartbuyer

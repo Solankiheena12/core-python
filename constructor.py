@@ -1,3 +1,7 @@
+# constructor is a special method that is automatically called when an object is created. 
+# It is used to initialize the attributes of the object. 
+# The constructor method is named __init__ and is defined within a class
+
 class Employee():
     def __init__(self, name, salary):
         self.name = name

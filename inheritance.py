@@ -1,3 +1,11 @@
+# inheritance provide code reusability to the program because we can use an existing class to create a new class 
+# instead of creating it from scratch.
+
+#  in inheritance, the child class can access all the data members and functions defined in the parent class.
+
+# a child class also provide its specific implementation to the function of the parent class
+
+
 # without __init__() method :
 
 
