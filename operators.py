@@ -413,11 +413,11 @@
 # if "mango" not in x:
 #     print("mango is not in list")
 
-# y = {"riya", "niya", "mina"}
-# if "siya" not in y:
-#     print("siya is not in tuple")
-# else:
-#     print("siya is in this tuple")
+y = {"riya", "niya", "mina"}
+if "siya" not in y:
+    print("siya is not in tuple")
+else:
+    print("siya is in this tuple")
 
 
 
