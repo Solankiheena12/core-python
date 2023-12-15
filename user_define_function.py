@@ -2,7 +2,7 @@
 
 # define a function using the keyword “def”. we will have to write the name of the function. 
 # The function name should follow the naming rules similar to Python identifiers.
-#  In case, if the functions require parameters, we will need to specify them. 
+# In case, if the functions require parameters, we will need to specify them. 
 # A colon will mark the end of the function header.
 
 
