@@ -344,4 +344,174 @@ print(formatted_pi)
 
 
 # ord() :
+char = 'A'
+unicode_code = ord(char)
+
+print(f"The Unicode code point of '{char}' is {unicode_code}")
+
+char = 'z'
+unicode_code = ord(char)
+
+print(f"The Unicode code point of '{char}' is {unicode_code}")
+
+char = '#'
+unicode_code = ord(char)
+
+print(f"The Unicode code point of '{char}' is {unicode_code}")
+
+char = '&'
+unicode_code = ord(char)
+
+print(f"The Unicode code point of '{char}' is {unicode_code}")
+
+
+
+
+# chr() :
+character_A = chr(65)
+print("Unicode Code of 65 is:", character_A) 
+
+characters = [chr(i) for i in range(97, 97 + 29)]
+print(characters) 
+
+num = [chr(a) for a in range(25, 25 + 30)]
+print(num)
+
+# character_b = chr(112)
+# print(character_b) 
+
+# character_c = chr(105)
+# print(character_c) 
+
+# character_d = chr(107)
+# print(character_d) 
+
+# character_e = chr(111)
+# print(character_e) 
+
+
+
+# join() :
+my_list = ['apple', 'banana', 'orange']
+result = ', '.join(my_list)
+
+print(result)
+
+my_tuple = ('red', 'green', 'blue')
+result = '-'.join(my_tuple)
+
+print(result)
+
+world = ('hye', 'hello', 'bye')
+result = '_'.join(world)
+
+print(result)
+
+
+
+# split() :
+sentence = "Hello, world! This is an example."
+
+words = sentence.split()
+print(words)
+
+parts = sentence.split(',')
+print(parts)
+
+limited_parts = sentence.split(' ', 3)
+print(limited_parts)
+
+
+
+
+
+
+
+
+# List, Tuple, and Set Operations:
+# len() :
+text = "Hello, World!"
+length = len(text)
+print("Length of the string:", length)
+
+
+
+# sum() :
+numbers = [1, 2, 3, 4, 5]
+
+result = sum(numbers)
+print("sum is:", result)  
+
+numbers = [1, 2, 3, 4, 5]
+
+result = sum(numbers, start=10)
+print("sum is :", result)  
+
+
+
+# sorted() :
+
+numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+sorted_numbers = sorted(numbers)
+print("list is in correct sequence:", sorted_numbers)
+
+fruits = ('apple', 'orange', 'banana', 'kiwi', 'grape')
+sorted_fruits = sorted(fruits)
+print("Sorting a Tuple:", sorted_fruits)
+
+words = ['banana', 'apple', 'kiwi', 'orange', 'grape']
+sorted_words_by_length = sorted(words, key=len)
+print("Sorting with a Custom Key:", sorted_words_by_length)
+
+numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+sorted_numbers_desc = sorted(numbers, reverse=True)
+print("Sorting in Descending Order:", sorted_numbers_desc)
+
+
+
+
+
+# any() :
+my_list = [False, True, False]
+result = any(my_list)
+print("any one is true:", result) 
+
+empty_list = []
+result_empty = any(empty_list)
+print("when list is empty result:", result_empty)  
+
+my_tuple = (0, False, 5)
+result_tuple = any(my_tuple)
+print("atleast one number positive:", result_tuple)  
+
+my_set = {0, False, ""}
+result_set = any(my_set)
+print("no positive value so return:", result_set)  
+
+result_string = any("Hello")
+print("string is positive", result_string)  
+
+result_range = any(range(0))
+print("no positive value:", result_range)  
+
+
+
+
+
+# all() :
+my_list = [True, True, True]
+result = all(my_list)
+print(result)  # Output: True
+
+my_list = [True, False, True]
+result = all(my_list)
+print(result)  # Output: False
+
+my_tuple = (1, 2, 3, 4)
+result = all(my_tuple)
+print(result)  # Output: True
+
+empty_list = []
+result = all(empty_list)
+print(result)  # Output: True (empty iterable)
 
