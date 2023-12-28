@@ -1,25 +1,25 @@
 from django.shortcuts import render
 from rest_framework import status
-from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from utils.pagination import Pagination
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
-from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
+from rest_framework.filters import SearchFilter, OrderingFilter
+from utils.pagination import Pagination
 
-from user.models import User
-from user.serializers import UserSerializer
+from pincode.models import Pincode
+from pincode.serializers import PincodeSerializer
 
 # Create your views here.
 
 
-class UserViewSet(ModelViewSet):
-    queryset = User.objects.all().order_by("-id")
-    serializer_class = UserSerializer
+class PincodeViewSet(ModelViewSet):
+    queryset = Pincode.objects.filter(deleted=0).order_by("id")
+    serializer_class = PincodeSerializer
     pagination_class = Pagination
     filter_backends = [SearchFilter, OrderingFilter]
-    # permission_classes = [IsAuthenticated]
-    # authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -59,3 +59,9 @@ class UserViewSet(ModelViewSet):
 
         else:
             return Response({"success": False, "message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.deleted = 1
+        instance.save()
+        return Response({"success": True, "message": "Pincode Destroyed Successfully"}, status=status.HTTP_200_OK)

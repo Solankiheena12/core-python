@@ -2,24 +2,32 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from utils.pagination import Pagination
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
-from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.filters import SearchFilter, OrderingFilter
+from utils.pagination import Pagination
 
-from user.models import User
-from user.serializers import UserSerializer
+from zone.models import Zone
+from zone.serializers import ZoneSerializer, ZoneNameDeleteSerializer, ZoneNameArchiveSerializer
 
 # Create your views here.
 
 
-class UserViewSet(ModelViewSet):
-    queryset = User.objects.all().order_by("-id")
-    serializer_class = UserSerializer
-    pagination_class = Pagination
+class ZoneViewSet(ModelViewSet):
+    queryset = Zone.objects.filter(deleted=0).order_by("-id")
+    serializer_class = ZoneSerializer
     filter_backends = [SearchFilter, OrderingFilter]
+    pagination_class = Pagination
     # permission_classes = [IsAuthenticated]
     # authentication_classes = [JWTAuthentication]
+
+    search_fields = [
+        "zone_name",
+    ]
+
+    ordering_fields = [
+        "zone_name",
+    ]
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -34,6 +42,7 @@ class UserViewSet(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         data = request.data
+        data["created_by"] = request.user.id
         serializer = self.serializer_class(data=data)
 
         if serializer.is_valid():
@@ -41,7 +50,12 @@ class UserViewSet(ModelViewSet):
             return Response({"success": True, "data": serializer.data}, status=status.HTTP_201_CREATED)
 
         else:
-            return Response({"success": False, "message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            error_messages = " ".join([", ".join(value) for value in serializer.errors.values()])
+            print([", ".join(value) for value in serializer.errors.values()])
+            # for value in serializer.errors.values():
+            #     print(value)
+                
+            return Response({"success": False, "message": error_messages}, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -51,6 +65,7 @@ class UserViewSet(ModelViewSet):
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
         data = request.data
+        data["updated_by"] = request.user.id
         serializer = self.serializer_class(instance, data=data, partial=True)
 
         if serializer.is_valid():
@@ -58,4 +73,10 @@ class UserViewSet(ModelViewSet):
             return Response({"success": True, "data": serializer.data}, status=status.HTTP_200_OK)
 
         else:
-            return Response({"success": False, "message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"success": True, "message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.deleted = 1
+        instance.save()
+        return Response({"success": True, "message": "Zone Destroyed Successfully"}, status=status.HTTP_200_OK)

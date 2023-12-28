@@ -10,15 +10,17 @@ class UserSerializer(serializers.ModelSerializer):
             "username",
             "first_name",
             "last_name",
+            "about_me",
+            "last_login",
             "email",
             "designation",
             "phone",
+            "message",
+            "is_active",
             "status",
-            "created_by",
-            "updated_by",
+            "emergency_contact",
+            "current_address",
+            "permanent_address",
         ]
 
-        extra_kwargs = {
-            "created_by": {"write_only": True},
-            "updated_by": {"write_only": True},
-        }
+        
