@@ -51,11 +51,10 @@ class ZoneViewSet(ModelViewSet):
 
         else:
             error_messages = " ".join([", ".join(value) for value in serializer.errors.values()])
-            print([", ".join(value) for value in serializer.errors.values()])
-            # for value in serializer.errors.values():
-            #     print(value)
-                
-            return Response({"success": False, "message": error_messages}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"success": False, "message": error_messages},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -73,10 +72,75 @@ class ZoneViewSet(ModelViewSet):
             return Response({"success": True, "data": serializer.data}, status=status.HTTP_200_OK)
 
         else:
-            return Response({"success": True, "message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            error_messages = " ".join([", ".join(value) for value in serializer.errors.values()])
+            return Response({"success": True, "message": error_messages}, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.deleted = 1
         instance.save()
         return Response({"success": True, "message": "Zone Destroyed Successfully"}, status=status.HTTP_200_OK)
+
+
+# Zone name Multiple Delete :
+
+
+class ZoneNameDeleteViewSet(ModelViewSet):
+    queryset = Zone.objects.filter(deleted=0).order_by("id")
+    serializer_class = ZoneSerializer
+    pagination_class = Pagination
+    filter_backends = [SearchFilter, OrderingFilter]
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
+
+    search_fields = [
+        "zone_name",
+    ]
+
+    ordering_fields = [
+        "zone_name",
+    ]
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+        serializer = ZoneNameDeleteSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"success": True, "message": "Zone name Archive Successfully"}, status=status.HTTP_200_OK)
+        else:
+            return Response(
+                {"success": False, "message": serializer.errors},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+
+# Zone name Multiple Archive :
+
+
+class ZoneNameArchiveViewSet(ModelViewSet):
+    queryset = Zone.objects.filter(deleted=1).order_by("id")
+    serializer_class = ZoneSerializer
+    pagination_class = Pagination
+    filter_backends = [SearchFilter, OrderingFilter]
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
+
+    search_fields = [
+        "zone_name",
+    ]
+
+    ordering_fields = [
+        "zone_name",
+    ]
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+        serializer = ZoneNameArchiveSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"success": True, "message": "Zone name Restore Successfully"}, status=status.HTTP_200_OK)
+        else:
+            return Response(
+                {"success": False, "message": serializer.errors},
+                status=status.HTTP_400_BAD_REQUEST,
+            )

@@ -8,7 +8,7 @@ from zone.models import Zone
 
 
 class Pincode(models.Model):
-    zone_name = models.ForeignKey(Zone, on_delete=models.CASCADE, null=True)
+    zone_id = models.ForeignKey(Zone, on_delete=models.CASCADE, null=True)
     pincode_number = models.CharField(max_length=100)
 
     created_by = models.ForeignKey(

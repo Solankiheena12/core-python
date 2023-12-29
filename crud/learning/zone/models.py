@@ -23,3 +23,8 @@ class Zone(models.Model):
     deleted = models.IntegerField(default=0)
     created_at = models.DateTimeField(default=now)
     updated_at = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return f"{self.zone_name}"
+
+
