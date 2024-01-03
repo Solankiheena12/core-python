@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "user",
     "zone",
     "pincode",
+    "category_tree",
 ]
 
 MIDDLEWARE = [

@@ -9,8 +9,15 @@ from zone.views import ZoneViewSet, ZoneNameDeleteViewSet, ZoneNameArchiveViewSe
 # pincode:
 from pincode.views import PincodeViewSet, PincodeDeleteViewSet, PincodeArchiveViewSet
 
+# Category_tree :
+from category_tree.views import CategoryTreeViewSet
 
+
+##############################
 router = routers.DefaultRouter()
+##############################
+
+
 
 # user:
 router.register("user", UserViewSet, basename="user")
@@ -25,6 +32,8 @@ router.register("pincode", PincodeViewSet, basename="pincode")
 router.register("pincode-delete", PincodeDeleteViewSet, basename="pincode_delete")
 router.register("pincode-archive", PincodeArchiveViewSet, basename="pincode_archive")
 
+# Category_tree :
+router.register("category-tree", CategoryTreeViewSet, "category_tree")
 
 # admin :
 # email: darshan@gmail.com
